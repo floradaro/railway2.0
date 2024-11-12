@@ -10,7 +10,8 @@
 <body>
     <h1>Gestión de Usuarios</h1>
     <form id="userForm">
-        <input type="text" id="name" placeholder="Nombre" required>
+        <input type="text" id="fullname" placeholder="Nombre" required>
+        <input type="phone" id="phone" placeholder="Phone" required>
         <input type="email" id="email" placeholder="Email" required>
         <button type="submit">Crear Usuario</button>
     </form>
@@ -19,7 +20,8 @@
     <script>
         document.getElementById('userForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
+            const fullname = document.getElementById('fullname').value;
+            const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
 
             fetch('/users', {
@@ -27,7 +29,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, email })
+                body: JSON.stringify({ fullname, phone, email })
             })
                 .then(response => response.json())
                 .then(data => {

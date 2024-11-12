@@ -7,11 +7,12 @@ app = Flask(__name__)
 # Configuración de la base de datos
 db_config = {
     'user': 'root',
-    'password': 'BZdBKRSuqxgNTpQmhHnKntIbiZjBdKMU',
-    'host': 'mysql.railway.internal',
-    'database': 'railway'
+    'password': 'yDZSAoKMeceVoQoqaNWpZHfYWoKjBxim',
+    'host': 'autorack.proxy.rlwy.net',
+    'database': 'railway',
+    'port': 35691
 }
-#mysql://root:BZdBKRSuqxgNTpQmhHnKntIbiZjBdKMU@autorack.proxy.rlwy.net:57114/railway
+#mysql://root:yDZSAoKMeceVoQoqaNWpZHfYWoKjBxim@autorack.proxy.rlwy.net:35691/railway
 def get_db_connection():
     conn = mysql.connector.connect(**db_config)
     return conn
@@ -24,11 +25,12 @@ def home():
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
-    name = data['name']
+    fullname = data['fullname']
+    phone = data['phone']
     email = data['email']
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (name, email) VALUES (%s, %s)", (name, email))
+    cursor.execute("INSERT INTO users (fullname, phone, email) VALUES (%s,%s, %s)", (fullname, phone, email))
     conn.commit()
     cursor.close()
     conn.close()
@@ -64,10 +66,11 @@ def get_user(id):
 def update_user(id):
     data = request.get_json()
     name = data['name']
+    phone = data['phone']
     email = data['email']
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("UPDATE users SET name = %s, email = %s WHERE id = %s", (name, email, id))
+    cursor.execute("UPDATE users SET name = %s, phone= %s, email = %s WHERE id = %s", (name,phone, email, id))
     conn.commit()
     cursor.close()
     conn.close()
