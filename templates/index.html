@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+</head>
+
+<body>
+    <h1>Gestión de Usuarios</h1>
+    <form id="userForm">
+        <input type="text" id="name" placeholder="Nombre" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Crear Usuario</button>
+    </form>
+    <ul id="userList"></ul>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            fetch('/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    loadUsers();
+                });
+        });
+
+        function loadUsers() {
+            fetch('/users')
+                .then(response => response.json())
+                .then(users => {
+                    const userList = document.getElementById('userList');
+                    userList.innerHTML = '';
+                    users.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = `${user[1]} (${user[2]})`;
+                        userList.appendChild(li);
+                    });
+                });
+        }
+
+        loadUsers();
+    </script>
+</body>
+
+</html>

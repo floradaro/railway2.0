@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import os
 import mysql.connector
 
@@ -18,7 +18,7 @@ def get_db_connection():
 
 @app.route('/')
 def home():
-    return "¡Hola, mundo!"
+    return render_template('index.html')
 
 # Crear un nuevo usuario
 @app.route('/users', methods=['POST'])
