@@ -7,11 +7,11 @@ app = Flask(__name__)
 # Configuración de la base de datos
 db_config = {
     'user': 'root',
-    'password': 'gFnBMkOKsYoOlZbwNanXgUVKkmQkNrmU',
+    'password': 'BZdBKRSuqxgNTpQmhHnKntIbiZjBdKMU',
     'host': 'mysql.railway.internal',
     'database': 'railway'
 }
-
+#mysql://root:BZdBKRSuqxgNTpQmhHnKntIbiZjBdKMU@autorack.proxy.rlwy.net:57114/railway
 def get_db_connection():
     conn = mysql.connector.connect(**db_config)
     return conn
@@ -85,4 +85,4 @@ def delete_user(id):
     return jsonify({'message': 'Usuario eliminado exitosamente'})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 3306)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
