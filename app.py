@@ -7,12 +7,12 @@ app = Flask(__name__)
 # Configuración de la base de datos
 db_config = {
     'user': 'root',
-    'password': 'yDZSAoKMeceVoQoqaNWpZHfYWoKjBxim',
-    'host': 'autorack.proxy.rlwy.net',
+    'password': 'psCpqbrIcYwjLfWntbBcrgXZOhUUJGkV',
+    'host': 'junction.proxy.rlwy.net',
     'database': 'railway',
-    'port': 35691
+    'port': 23647
 }
-#mysql://root:yDZSAoKMeceVoQoqaNWpZHfYWoKjBxim@autorack.proxy.rlwy.net:35691/railway
+#mysql://root:psCpqbrIcYwjLfWntbBcrgXZOhUUJGkV@junction.proxy.rlwy.net:23647/railway
 def get_db_connection():
     conn = mysql.connector.connect(**db_config)
     return conn
