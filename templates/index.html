@@ -18,6 +18,7 @@
     <ul id="userList"></ul>
 
     <script>
+        // Crear un nuevo usuario
         document.getElementById('userForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const fullname = document.getElementById('fullname').value;
@@ -34,24 +35,68 @@
                 .then(response => response.json())
                 .then(data => {
                     alert(data.message);
-                    loadUsers();
+                    loadUsers(); // Recargar la lista de usuarios
+                    document.getElementById('userForm').reset(); // Limpiar el formulario
                 });
         });
 
+        // Cargar la lista de usuarios
         function loadUsers() {
             fetch('/users')
                 .then(response => response.json())
                 .then(users => {
                     const userList = document.getElementById('userList');
-                    userList.innerHTML = '';
+                    userList.innerHTML = ''; // Limpiar la lista actual
+
                     users.forEach(user => {
                         const li = document.createElement('li');
-                        li.textContent = `${user[1]} (${user[2]})`;
+                        li.innerHTML = `
+                            ${user[1]} (${user[2]}) 
+                            <button onclick="editUser(${user[0]})">Editar</button>
+                            <button onclick="deleteUser(${user[0]})">Eliminar</button>
+                        `;
                         userList.appendChild(li);
                     });
                 });
         }
 
+        // Editar un usuario
+        function editUser(id) {
+            const newName = prompt('Nuevo nombre:');
+            const newPhone = prompt('Nuevo teléfono:');
+            const newEmail = prompt('Nuevo email:');
+            if (!newName || !newPhone || !newEmail) return;
+
+            fetch(`/users/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fullname: newName, phone: newPhone, email: newEmail })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    loadUsers(); // Recargar la lista de usuarios
+                });
+        }
+
+        // Eliminar un usuario
+        function deleteUser(id) {
+            const confirmDelete = confirm(`¿Estás seguro de que quieres eliminar al usuario con ID ${id}?`);
+            if (!confirmDelete) return;
+
+            fetch(`/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    loadUsers(); // Recargar la lista de usuarios
+                });
+        }
+
+        // Cargar los usuarios al cargar la página
         loadUsers();
     </script>
 </body>
