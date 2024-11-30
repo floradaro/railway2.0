@@ -65,12 +65,12 @@ def get_user(id):
 @app.route('/users/<int:id>', methods=['PUT'])
 def update_user(id):
     data = request.get_json()
-    name = data['name']
+    fullname = data['name']
     phone = data['phone']
     email = data['email']
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("UPDATE users SET name = %s, phone= %s, email = %s WHERE id = %s", (name,phone, email, id))
+    cursor.execute("UPDATE users SET name = %s, phone= %s, email = %s WHERE id = %s", (fullname,phone, email, id))
     conn.commit()
     cursor.close()
     conn.close()
