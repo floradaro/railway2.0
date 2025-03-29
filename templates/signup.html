@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="GALGOS © - Tienda de ropa masculina en Mendoza. Emprendedor(a) ofreciendo moda de calidad con envíos a todo el país. Visítanos en Av. Pedro Molina 283. ¡Te esperamos de lunes a sábado!" />
+    <title>Galgos - Clothing</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <link href="../static/css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header class="my-4 border-bottom border-black borde">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="/" class="nav-link nav-color">
+                            <h1 class="mb-4 title">GALGOS</h1>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
+                        type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                        aria-controls="sidebar">Más</a>
+
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+                        <div class="offcanvas-header">
+                            <button type="btn-close" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
+                            <a href="#" class="d-block mb-2 title2">→ Colección</a>
+                            <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
+                            <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ms-4">
+                    <i class="bi bi-search icon"></i>
+
+                    <button class="btn button-white" id="searchBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search icon " viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0">
+                            </path>
+                        </svg>
+                        Buscar</button>
+                    <div id="searchInput" class="" style="display: none">
+                        <input type="text" class="form-control" placeholder="Buscar..." id="searchField" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container m-5">
+            <form id="signupForm">
+                <div class="col-6">
+                    <h1 class="mb-2">Crear cuenta</h1>
+                    <h5 class="mb-4">
+                        Compra más rápido y llevá el control de tus pedidos, ¡en un solo lugar!
+                    </h5>
+
+                    <div class="pb-3">
+                        <h6>Nombre y Apellido</h6>
+                        <input type="text" class="form-control mb-2 input" id="fullname" name="fullname"
+                            placeholder="Ej: Mariano Perez" required />
+                    </div>
+                    <div class="pb-3">
+                        <h6>Email</h6>
+                        <input type="email" class="form-control mb-2 input" id="email" name="email"
+                            placeholder="nombre@ejemplo.com" required />
+                    </div>
+                    <label for="password" class="form-label">CONTRASEÑA</label>
+                    <div class="mb-3">
+                        <div class="input-group mb-2">
+                            <input type="password" class="form-control input mb-2" id="password" name="password"
+                                placeholder="Ej: tucontraseña" required>
+                            <button class="btn btn-outline-secondary h-25 input" type="button" id="togglePassword">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <label for="confirmPassword" class="form-label">CONFIRMAR CONTRASEÑA</label>
+                    <div class="mb-3">
+                        <div class="input-group mb-2">
+                            <input type="password" class="form-control input mb-2" id="confirmPassword"
+                                name="confirmPassword" placeholder="Ej: tucontraseña" required>
+                            <button class="btn btn-outline-secondary h-25 input" type="button"
+                                id="toggleConfirmPassword">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="signupMessage" class="alert d-none"></div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn button-submit d-flex justify-content-center">
+                            Crear Cuenta
+                        </button>
+                    </div>
+                    <p class="mt-3 text-center">
+                        ¿Ya tienes una cuenta? <a href="./login"
+                            class="text-decoration-none register-link title3">Inicia
+                            sesión</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row text-center text-md-left">
+                <!-- Logo y redes sociales -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="footer-logo">GALGOS</div>
+                    <div class="footer-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Horarios y contacto -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Horarios de Atención</h5>
+                    <p>
+                        Lunes a Viernes: 10 - 19 Hs<br />Sábados: 10 a 14 Hs - 16 a 19 Hs
+                    </p>
+                    <h5>Contacto</h5>
+                    <p>
+                        <i class="fab fa-whatsapp"></i> +5492610000000<br />
+                        <i class="fas fa-envelope"></i> galgosclothing@gmail.com
+                    </p>
+                </div>
+
+                <!-- Dirección y mapa -->
+                <div class="col-md-4">
+                    <h5>Visítanos</h5>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> Av. Pedro Molina 283 -
+                        Ciudad de Mendoza
+                    </p>
+                    <!-- Mapa embebido -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.6547081347033!2d-68.8436360847858!3d-32.889891180938614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e09075f45b653%3A0x7d4c7e9d23b21cf7!2sAv.%20Pedro%20Molina%20283%2C%20Mendoza!5e0!3m2!1ses!2sar!4v1601605156541!5m2!1ses!2sar"
+                        width="100%" height="150" frameborder="0" style="border: 0" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+
+            <!-- Logos de pago -->
+            <div class="row mt-4">
+                <div class="col text-center payment-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                        alt="Mastercard" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Logo_Nativa.png" alt="Nativa" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Cabal_logo.svg" alt="Cabal" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Naranja_logo.svg" alt="Naranja" />
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom mt-3">
+                Copyright © 2024 Galgos Clothing. Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>

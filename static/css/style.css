@@ -1,0 +1,229 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --mainColor: #ffffff;
+    --secondColor: #000000;
+    --thirdColor: #c3b3a2;
+    --fourColor: #555555;
+    --fiveColor: #dddddd;
+    --sixth: #b89e81;
+}
+
+body {
+    font-family: "Bebas Neue", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.title {
+    font-size: 4em !important;
+}
+
+.title:hover {
+    color: var(--fourColor);
+}
+
+.title2 {
+    font-size: 2em !important;
+}
+
+.title3 {
+    color: var(--thirdColor) !important;
+}
+
+.title3:hover {
+    color: var(--sixth) !important;
+}
+
+.nav-color {
+    color: var(--secondColor);
+    padding: 0 !important;
+}
+
+.icon {
+    color: var(--secondColor);
+}
+
+.borde {
+    border-bottom: 20px solid !important;
+}
+
+.borde1 {
+    border-bottom: 15px solid !important;
+}
+
+.button-white {
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
+
+.button-submit {
+    background-color: var(--thirdColor);
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.button-submit:hover {
+    color: #fff;
+    background-color: #b89e81;
+}
+
+/*Sidebar*/
+
+.offcanvas {
+    width: 300px;
+    /* Ancho del sidebar */
+    background-color: #fff;
+    /* Fondo blanco */
+}
+
+.offcanvas-body a {
+    color: #000;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.offcanvas-body a:hover {
+    color: #888;
+}
+
+
+/* Contenedor principal */
+.catalog-section {
+    justify-content: space-between;
+    max-width: 1160px;
+    margin: auto;
+}
+
+/* Estilos para cada imagen */
+.catalog-image-small {
+    width: 30%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+.catalog-image-large {
+    width: 50%;
+    height: 300px;
+    background-size: cover;
+    background-position: top;
+    transition: background-image 0.3s ease;
+}
+
+.catalog-image-left {
+    background-image: url("../assets/img/1.jpg");
+    /* Primera imagen izquierda */
+}
+
+.catalog-image-right {
+    background-image: url("../assets/img/2.jpg");
+    /* Primera imagen derecha */
+}
+
+.catalog-image-left:hover {
+    background-image: url("../assets/img/3.jpg");
+    /* Segunda imagen izquierda */
+}
+
+.catalog-image-right:hover {
+    background-image: url("../assets/img/4.jpg");
+    /* Segunda imagen derecha */
+}
+
+.catalog-button-container {
+    width: 40%;
+    height: 300px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalog-button {
+    background-color: var(--thirdColor);
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.catalog-button:hover {
+    color: #fff;
+    background-color: #b89e81;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columnas */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.product-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-item img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover img {
+    transform: scale(1.05);
+}
+
+.footer-color {
+    background-color: var(--thirdColor) !important;
+}
+
+.footer {
+    background-color: #c5ab91;
+    /* Color beige */
+    padding: 40px 0;
+    color: #000;
+}
+
+.footer-logo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-icons i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.payment-logos img {
+    height: 30px;
+    margin: 0 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.input {
+    border: 1px solid var(--thirdColor);
+    border-radius: 30px;
+}
