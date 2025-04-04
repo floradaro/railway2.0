@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    checkLoginStatus();
+    // Función para verificar el estado de inicio de sesión
+    function checkLoginStatus() {
+        fetch('/check_login_status', {
+            method: 'GET',
+            credentials: 'include' 
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.logged_in) {
+                // El usuario está autenticado
+                document.querySelectorAll('.logged-in-only').forEach(el => {
+                    el.style.display = 'block';
+                });
+                document.querySelectorAll('.logged-out-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+            } else {
+                // El usuario no está autenticado
+                document.querySelectorAll('.logged-in-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.logged-out-only').forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar estado de sesión:', error);
+        });
+    }
+
     // Formulario de registro
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
@@ -39,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageDiv.classList.add('alert-success');
                 messageDiv.textContent = 'Cuenta creada exitosamente';
                 
-                // Redirigir a la página de login después de un breve retraso
+                //Redirigir a home
                 setTimeout(() => {
-                    window.location.href = '/login';
+                    window.location.href = '/';
                 }, 2000);
             })
             .catch(error => {
@@ -128,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Editar un usuario
     function editUser(id) {
-        // Primero obtenemos los datos actuales del usuario
+        // Obtenemos los datos actuales del usuario
         fetch(`/users/${id}`)
             .then(response => response.json())
             .then(user => {

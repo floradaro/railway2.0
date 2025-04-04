@@ -1,0 +1,18 @@
+# Ignorar entorno virtual
+venv/
+.venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+
+# Archivos de base de datos
+*.sql

@@ -5,6 +5,9 @@ import mysql.connector
 app = Flask(__name__)
 
 app.secret_key = os.getenv('SECRET_KEY', 'clave-secreta-para-dev')
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = False 
+app.config['SESSION_COOKIE_HTTPONLY'] = True
 
 # Configuración para entorno local
 db_config_local = {
@@ -43,12 +46,16 @@ def signup_page():
 
 @app.route('/logout')
 def logout():
-    session.pop('logged_in', None)
+    session.clear()
     return redirect(url_for('home'))
 
 @app.route('/password_reset')
 def reset():
     return render_template('password_reset.html')
+
+@app.route('/check_login_status')
+def check_login_status():
+    return jsonify({'logged_in': 'logged_in' in session})
 
 # Crear un nuevo usuario
 @app.route('/users', methods=['POST'])
@@ -61,9 +68,16 @@ def create_user():
     cursor = conn.cursor()
     cursor.execute("INSERT INTO users (fullname, email, password) VALUES (%s,%s, %s)", (fullname, email, password))
     conn.commit()
+
+    user_id = cursor.lastrowid
+
+    session.permanent = True
+    session['logged_in'] = True
+    session['user_id'] = user_id
+
     cursor.close()
     conn.close()
-    return jsonify({'message': 'Usuario creado exitosamente'}), 201
+    return jsonify({'message': 'Usuario creado exitosamente', 'user_id': user_id}), 201
 
 # Obtener todos los usuarios
 @app.route('/users', methods=['GET'])
@@ -109,6 +123,7 @@ def login():
         conn.close()
         
         if user and user['password'] == password:
+            session.permanent = True
             session['logged_in'] = True
             session['user_id'] = user['id']
             
@@ -123,6 +138,13 @@ def login():
                 return "Datos inválidos", 401
     
     return render_template('login.html')
+
+@app.before_request
+def check_login():
+    public_routes = ['home', 'login', 'signup_page', 'create_user', 'reset', 'static', 'check_login_status']
+    
+    if request.endpoint and request.endpoint not in public_routes and not session.get('logged_in'):
+        return redirect(url_for('login'))
 
 #Verificacion de inicio de sesión
 @app.route('/profile')
