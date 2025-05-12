@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     checkLoginStatus();
+    loadCurrentUser();
+    
+    // Variable global para guardar el ID del usuario actual
+    let currentUserId = null;
+
     // Función para verificar el estado de inicio de sesión
     function checkLoginStatus() {
         fetch('/check_login_status', {
@@ -131,106 +136,215 @@ document.addEventListener('DOMContentLoaded', function() {
  
     // Cargar la lista de usuarios
     function loadUsers() {
-        const userList = document.getElementById('userList');
-        if (!userList) return; // Si no existe el elemento, salir de la función
-        
-        fetch('/users')
-            .then(response => response.json())
-            .then(users => {
-                userList.innerHTML = ''; // Limpiar la lista actual
-        
-                users.forEach(user => {
-                    const userId = user.id || user[0];
-                    const userName = user.fullname || user[1];
-                    const userEmail = user.email || user[2];
-                    
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        ${userName} (${userEmail}) 
-                        <button onclick="editUser(${userId})">Editar</button>
-                        <button onclick="deleteUser(${userId})">Eliminar</button>
-                    `;
-                    userList.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Error al cargar usuarios:', error);
-            });
+        const userId = user.id || user[0];
+        const userName = user.fullname || user[1];
+        const userEmail = user.email || user[2];
+
+        const li = document.createElement('li');
+
+        li.innerHTML = `
+            ${userName} (${userEmail}) 
+            <button onclick="editUser(${userId})">Editar</button>
+            <button onclick="deleteUser(${userId})">Eliminar</button>
+        `;
+        userList.appendChild(li);
     }
-    
-    
-    // Editar un usuario
-    function editUser(id) {
-        // Obtenemos los datos actuales del usuario
-        fetch(`/users/${id}`)
-            .then(response => response.json())
+
+    function loadCurrentUser() {
+        fetch('/current_user')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No autenticado o error al obtener el usuario');
+                }
+                return response.json();
+            })
             .then(user => {
-                const currentName = user.fullname || user[1];
-                const currentEmail = user.email || user[2];
+                console.log('Usuario recibido:', user);
+    
+                // Guardar el ID del usuario actual
+                currentUserId = user.id;
                 
-                // Solicitamos los nuevos valores al usuario
-                const newName = prompt('Nuevo nombre:', currentName);
-                const newEmail = prompt('Nuevo email:', currentEmail);
-                const newPassword = prompt('Nueva contraseña (dejar en blanco para mantener la actual):');
-                
-                if (!newName || !newEmail) return;
-                
-                // Si el usuario no ingresó una nueva contraseña, usamos la actual
-                const password = newPassword || user.password || user[3];
-                
-                fetch(`/users/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        fullname: newName, 
-                        email: newEmail, 
-                        password: password 
-                    })
-                })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error en la respuesta del servidor');
-                })
-                .then(data => {
-                    alert(data.message || 'Usuario actualizado exitosamente');
-                    loadUsers(); // Recargar la lista de usuarios
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al actualizar el usuario');
-                });
+                const fullnameInput = document.getElementById('fullname');
+                const emailInput = document.getElementById('email');
+    
+                if (fullnameInput) fullnameInput.value = user.fullname || user.name || user.nombre || ''; 
+                if (emailInput) emailInput.value = user.email || '';
             })
             .catch(error => {
-                console.error('Error al obtener datos del usuario:', error);
-                alert('Error al obtener datos del usuario');
+                console.error('Error al cargar el usuario actual:', error);
             });
     }
     
-    // Eliminar un usuario
-    function deleteUser(id) {
-        const confirmDelete = confirm(`¿Estás seguro de que quieres eliminar este usuario?`);
-        if (!confirmDelete) return;
-    
-        fetch(`/users/${id}`, {
-            method: 'DELETE'
+    // Modificar perfil
+    const editProfileBtn = document.getElementById('editProfileBtn');
+if (editProfileBtn) {
+    editProfileBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        if (!currentUserId) {
+            alert('Error: No se pudo identificar el usuario actual');
+            return;
+        }
+        
+        // Obtener los valores actualizados de los campos del formulario
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        
+        // Verificar que los campos no estén vacíos
+        if (!fullname || !email) {
+            alert('Por favor, complete todos los campos obligatorios');
+            return;
+        }
+        
+        // Enviar la solicitud de actualización
+        fetch(`/update_profile/${currentUserId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fullname: fullname,
+                email: email
+            })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar el perfil');
+            }
+            return response.json();
+        })
         .then(data => {
-            alert(data.message);
-            loadUsers(); // Recargar la lista de usuarios
+            alert('Perfil actualizado exitosamente');
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error al eliminar el usuario');
+            console.error('Error al actualizar el perfil:', error);
+            alert('Error al actualizar el perfil: ' + error.message);
+        });
+    });
+}
+
+// Cambiar contraseña
+const editPasswordBtn = document.getElementById('editPasswordBtn');
+if (editPasswordBtn) {
+    editPasswordBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        if (!currentUserId) {
+            alert('Error: No se pudo identificar el usuario actual');
+            return;
+        }
+        
+        // Obtener los valores de contraseña
+        const currentPassword = document.getElementById('password').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+        
+        // Validaciones básicas
+        if (!currentPassword) {
+            alert('Por favor, ingrese su contraseña actual');
+            return;
+        }
+        
+        if (!newPassword) {
+            alert('Por favor, ingrese su nueva contraseña');
+            return;
+        }
+        
+        if (newPassword !== confirmNewPassword) {
+            alert('Las contraseñas nuevas no coinciden');
+            return;
+        }
+        
+        // Enviar la solicitud de actualización de contraseña
+        fetch(`/update_password/${currentUserId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                current_password: currentPassword,
+                new_password: newPassword
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.message || 'Error al actualizar la contraseña');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Contraseña actualizada exitosamente');
+            // Limpiar los campos de contraseña
+            document.getElementById('password').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+        })
+        .catch(error => {
+            console.error('Error al actualizar la contraseña:', error);
+            alert(error.message);
+        });
+    });
+}
+
+    
+   const deleteProfileBtn = document.querySelector('.btn-danger');
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    const confirmBtn = document.getElementById('confirmDeleteBtn');
+    const passwordInput = document.getElementById('deletePassword');
+
+    if (deleteProfileBtn) {
+        deleteProfileBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (!currentUserId) {
+                alert('Error: No se pudo identificar el usuario actual');
+                return;
+            }
+
+            // Mostrar modal de Bootstrap
+            passwordInput.value = ''; // Limpiar campo de contraseña
+            deleteModal.show();
         });
     }
-    
-    // Cargar los usuarios al cargar la página
-    loadUsers();
+
+    confirmBtn.addEventListener('click', function () {
+        const password = passwordInput.value.trim();
+
+        if (!password) {
+            alert('Debe ingresar su contraseña');
+            return;
+        }
+
+        // Ocultar el modal
+        deleteModal.hide();
+
+        // Enviar solicitud DELETE con contraseña (si tu backend lo acepta)
+        fetch(`/users/${currentUserId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password }) // solo si el backend lo requiere
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al eliminar el perfil');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Perfil eliminado exitosamente');
+                window.location.href = '/logout';
+            })
+            .catch(error => {
+                console.error('Error al eliminar el perfil:', error);
+                alert('Error al eliminar el perfil: ' + error.message);
+            });
+    });
+
+
     
     // Funcionalidad para el botón de búsqueda
     if (document.getElementById("searchBtn")) {

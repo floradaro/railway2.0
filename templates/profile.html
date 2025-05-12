@@ -73,6 +73,87 @@
     </header>
 
     <main>
+        <section class="container m-5">
+            <form id="profileForm">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="m-3 p-4">
+                            <h1 class="mb-2 text-dm-center">Información del usuario</h1>
+                            <h5 class="mb-5 mb-sm-3">
+                                Visualiza y actualiza tu información personal
+                            </h5>
+                            <div class="pt-3 pb-3">
+                                <h6>Nombre Completo</h6>
+                                <input type="text" class="form-control mb-2 input" id="fullname" name="fullname"
+                                    placeholder="Ej: Mariano Perez" required />
+                            </div>
+                            <div class="pb-3">
+                                <h6>Email</h6>
+                                <input type="email" class="form-control mb-2 input" id="email" name="email"
+                                    placeholder="nombre@ejemplo.com" required />
+                            </div>
+                            <button type="button" class="btn btn-modificar btn-sm" id="editProfileBtn">
+                                <i class="fa-solid fa-pen-to-square me-1"></i>Modificar Perfil
+                            </button>
+                        </div>
+                        <div class="mx-3 my-5 p-4">
+                            <h1 class="mb-2 text-dm-center">Cambiar contraseña</h1>
+                            <h5 class="mb-5 mb-sm-3">
+                                Actualiza tu contraseña para mantener tu cuenta segura.
+                            </h5>
+                            <label for="password" class="form-label">CONTRASEÑA ACTUAL</label>
+                            <div class="mb-3">
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control input mb-2" id="password" name="password"
+                                        placeholder="Ej: tucontraseñaactual" required>
+                                    <button class="btn btn-outline-secondary h-25 input" type="button"
+                                        id="togglePassword">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <label for="password" class="form-label">NUEVA CONTRASEÑA</label>
+                            <div class="mb-3">
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control input mb-2" id="newPassword"
+                                        name="newPassword" placeholder="Ej: tunuevacontraseña" required>
+                                    <button class="btn btn-outline-secondary h-25 input" type="button"
+                                        id="togglePassword">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <label for="password" class="form-label">CONFIRMAR NUEVA CONTRASEÑA</label>
+                            <div class="mb-3">
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control input mb-2" id="confirmNewPassword"
+                                        name="confirmNewPassword" placeholder="Ej: tunuevacontraseña" required>
+                                    <button class="btn btn-outline-secondary h-25 input" type="button"
+                                        id="togglePassword">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-modificar btn-sm" id="editPasswordBtn">
+                                <i class="fa-solid fa-pen-to-square me-1"></i>Actualizar contraseña
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-end justify-content-start mt-5">
+                        <p class="text-end small mb-0 mb-2">Eliminar tu cuenta es una acción permanente y no se puede
+                            deshacer.</p>
+                        <p class="text-end small mb-2">Perderás todo el acceso a tus datos.</p>
+                        <button type="button" class="btn btn-eliminar btn-sm" id="deleteProfileBtn">
+                            <i class="fa-solid fa-trash me-1"></i>Eliminar Cuenta
+                        </button>
+
+                    </div>
+
+                </div>
+            </form>
+        </section>
 
     </main>
 
@@ -122,9 +203,9 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
                         alt="Mastercard" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Logo_Nativa.png" alt="Nativa" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Cabal_logo.svg" alt="Cabal" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Naranja_logo.svg" alt="Naranja" />
+                    <img src="/static/assets/img/nativa.png" alt="Nativa" />
+                    <img src="/static/assets/img/tarjeta-naranja.png" alt="Naranja" />
+                    <img src="/static/assets/img/mercado-pago.png" alt="Mercado Pago" />
                 </div>
             </div>
 
@@ -134,6 +215,33 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal Bootstrap -->
+
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">¿Desea eliminar su perfil?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Esta acción no se puede deshacer.</p>
+                    <input type="password" class="form-control input mb-2" id="deletePassword" name="password"
+                        placeholder="Ingrese su contraseña">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="cancelDeleteBtn">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar Perfil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="../static/js/bootstrap.js"></script>
     <script src="../static/js/script.js"></script>
 </body>
