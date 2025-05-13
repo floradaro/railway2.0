@@ -141,7 +141,7 @@ def login():
 
 @app.before_request
 def check_login():
-    public_routes = ['home', 'login', 'signup_page', 'create_user', 'reset', 'static', 'check_login_status']
+    public_routes = ['home', 'login', 'signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable']
     
     if request.endpoint and request.endpoint not in public_routes and not session.get('logged_in'):
         return redirect(url_for('login'))
@@ -178,6 +178,10 @@ def delete_user(id):
     cursor.close()
     conn.close()
     return jsonify({'message': 'Usuario eliminado exitosamente'})
+
+@app.route('/sizeTable')
+def sizeTable():
+    return render_template('sizeTable.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
