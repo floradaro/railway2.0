@@ -43,7 +43,6 @@
                             <div class="offcanvas-body">
                                 <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
                                 <a href="#" class="d-block mb-2 title2">→ Colección</a>
-                                <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
                                 {% if not session.get('logged_in') %}
                                 <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
                                 <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
@@ -77,65 +76,46 @@
     </section>
     <main>
         <section class="border-bottom border-black borde1">
-            <div class="d-flex align-items-center catalog-section mb-4">
-                <div class="catalog-image-small catalog-image catalog-image-left"></div>
+            <div class="justify-content-center p-">
+                <h2>Talles de prendas unisex</h2>
+                <p>Las prendas unisex se han diseñado y etiquetado según los talles para hombre, pero están pensadas para que las use cualquier persona, independientemente de su género. Si normalmente no usás talles para hombre, tal vez tengas que pedir una talle distinto a la que usás habitualmente. Comprobá las medidas que aparecen a continuación para encontrar tu talle.</p>
+            </div>
+        </section>
+        <section class="container my-5 d-flex flex-column flex-md-row align-items-start justify-content-center gap-4">
+            <!-- Tabla de talles -->
+            <div class="table-responsive" style="flex: 1;">
+                <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                    <th>Talle</th>
+                    <th>Pecho (cm)</th>
+                    <th>Cintura (cm)</th>
+                    <th>Cadera (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td>90 - 94</td><td>76 - 80</td><td>90 - 94</td></tr>
+                    <tr><td>M</td><td>95 - 99</td><td>81 - 85</td><td>95 - 99</td></tr>
+                    <tr><td>L</td><td>100 - 104</td><td>86 - 90</td><td>100 - 104</td></tr>
+                    <tr><td>XL</td><td>105 - 109</td><td>91 - 95</td><td>105 - 109</td></tr>
+                    <tr><td>XXL</td><td>110 - 114</td><td>96 - 100</td><td>110 - 114</td></tr>
+                </tbody>
+                </table>
+                 <h2 class="mt-4">¿Cómo tomar tus medidas?</h2>
+                    <p><strong>Pecho:</strong> Medí alrededor de la parte más ancha del pecho, manteniendo la cinta en línea recta y sin ajustar demasiado.</p>
+                    <p><strong>Cintura:</strong> Medí la circunferencia justo por encima del ombligo, donde normalmente cae el pantalón.</p>
+                    <p><strong>Cadera:</strong> Medí alrededor de la parte más ancha de la cadera, asegurándote de que la cinta quede recta.</p>
+            </div>
 
-                <!-- Botón de Catálogo en el centro -->
-                <div class="catalog-button-container">
-                    <a href="#catalog" class="catalog-button">VER CATÁLOGO</a>
-                </div>
-
-                <!-- Imagen derecha -->
-                <div class="catalog-image-large catalog-image catalog-image-right"></div>
+            <!-- Imagen guía -->
+            <div style="flex: 0 0 300px;">
+                <img src="../static/assets/img/guia_talles.png" alt="Guía de talles" class="img-fluid rounded border border-dark">
             </div>
         </section>
 
-        <section class="border-bottom border-black borde1">
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="static/assets/img/5.jpg" alt="Producto 1" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/6.jpg" alt="Producto 2" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/7.jpg" alt="Producto 3" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/8.jpg" alt="Producto 4" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/9.jpg" alt="Producto 5" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/10.jpg" alt="Producto 6" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/11.jpg" alt="Producto 7" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/12.jpg" alt="Producto 8" />
-                </div>
-            </div>
-        </section>
-
-        <section class="m-5">
-            <div class="align-items-center text-center">
-                <h1 class="mb-2">Recibí todas las ofertas</h1>
-                <h5 class="mb-4">
-                    ¿Quieres recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
-                    disfrutarlas!
-                </h5>
-
-                <div class="d-flex justify-content-center m-4">
-                    <input type="email" class="form-control w-50 mb-2 input" id="exampleFormControlInput1"
-                        placeholder="nombre@ejemplo.com" />
-                </div>
-                <div class="mt-4">
-                    <a href="#catalog" class="catalog-button">Enviar</a>
-                </div>
-            </div>
-        </section>
+      <section class="how-to-measure container">
+       
+      </section>
     </main>
 
     <footer class="footer">
@@ -184,9 +164,9 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
                         alt="Mastercard" />
-                    <img src="/static/assets/img/nativa.png" alt="Nativa" />
-                    <img src="/static/assets/img/tarjeta-naranja.png" alt="Naranja" />
-                    <img src="/static/assets/img/mercado-pago.png" alt="Mercado Pago" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Logo_Nativa.png" alt="Nativa" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Cabal_logo.svg" alt="Cabal" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Naranja_logo.svg" alt="Naranja" />
                 </div>
             </div>
 
