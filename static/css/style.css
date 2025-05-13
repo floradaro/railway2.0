@@ -65,9 +65,9 @@ body {
     color: #000;
     border-radius: 20px;
     padding: 10px 30px;
-    font-weight: bold;
+
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: background-color 0.3s ease;
 }
 
@@ -155,13 +155,13 @@ body {
     color: #000;
     border-radius: 20px;
     padding: 10px 30px;
-    font-weight: bold;
     text-decoration: none;
     font-size: 1.5rem;
     transition: background-color 0.3s ease;
 }
 
-.catalog-button:hover {
+.catalog-button:hover,
+.btn-modificar:hover {
     color: #fff;
     background-color: #b89e81;
 }
@@ -210,6 +210,7 @@ body {
 .footer-icons i {
     font-size: 24px;
     margin-right: 10px;
+    color: #000;
 }
 
 .payment-logos img {
@@ -226,4 +227,32 @@ body {
 .input {
     border: 1px solid var(--thirdColor);
     border-radius: 30px;
+}
+
+/*Profile*/
+
+.btn-modificar {
+    background-color: var(--thirdColor);
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+
+.btn-eliminar {
+    background-color: rgb(228, 0, 0);
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    color: #fff;
+    background-color: rgb(167, 0, 0);
 }
