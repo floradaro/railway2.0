@@ -377,3 +377,20 @@ if (editPasswordBtn) {
         });
     }
 });
+
+    //Funcionalidad para botón de registrarse
+document.getElementById('registrarseBtn').addEventListener('click', () => {
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput.value.trim();
+    const mensajeError = document.getElementById('mensajeError');
+
+    if (!email) {
+      mensajeError.textContent = 'Por favor ingresá un correo válido.';
+      return;
+    }
+
+    // Si todo está bien, limpiamos el mensaje y redirigimos
+    mensajeError.textContent = '';
+    const url = '/signup?email=' + encodeURIComponent(email);
+    window.location.href = url;
+  });
