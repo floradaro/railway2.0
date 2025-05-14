@@ -42,7 +42,8 @@ def home():
 
 @app.route('/signup', methods=['GET'])
 def signup_page():
-    return render_template('signup.html') 
+    email_prefill = request.args.get('email', '')
+    return render_template('signup.html', email=email_prefill)
 
 @app.route('/logout')
 def logout():
