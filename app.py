@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
 import os
 import mysql.connector
+from productos import obtener_producto_por_id
+from productos import productos
+
 
 app = Flask(__name__)
 
@@ -38,12 +41,25 @@ def get_db_connection():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html',productos=productos.values())
 
 @app.route('/contact_form.html')
 def contact():
     return render_template('contact_form.html')
 
+
+@app.route('/detalle/<int:producto_id>')
+def detalle_producto(producto_id):
+    producto = obtener_producto_por_id(producto_id)
+    if producto:
+        # Obtener productos relacionados (excluyendo el producto actual)
+        productos_relacionados = [p for id, p in productos.items() if id != producto_id][:4]
+        return render_template('detail.html', producto=producto, productos_relacionados=productos_relacionados)
+    else:
+        return "Producto no encontrado", 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
 @app.route('/signup', methods=['GET'])
 def signup_page():
     email_prefill = request.args.get('email', '')
