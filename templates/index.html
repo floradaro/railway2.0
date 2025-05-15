@@ -203,31 +203,14 @@
 
         <section class="border-bottom border-black borde1">
             <div class="product-grid">
-                <div class="product-item">
-                    <img src="static/assets/img/5.jpg" alt="Producto 1" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/6.jpg" alt="Producto 2" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/7.jpg" alt="Producto 3" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/8.jpg" alt="Producto 4" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/9.jpg" alt="Producto 5" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/10.jpg" alt="Producto 6" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/11.jpg" alt="Producto 7" />
-                </div>
-                <div class="product-item">
-                    <img src="../static/assets/img/12.jpg" alt="Producto 8" />
-                </div>
-            </div>
+        {% for producto in productos %}
+        <div class="product-item">
+            <a href="{{ url_for('detalle_producto', producto_id=producto.id) }}">
+                <img src="{{ url_for('static', filename='assets/img/' ~ producto.imagen_principal) }}" alt="{{ producto.nombre }}">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
         </section>
 
         <section class="m-5">
