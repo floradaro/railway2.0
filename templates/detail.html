@@ -37,25 +37,27 @@
             
             <!-- Información del producto -->
             <div class="col-md-5 product-info">
-                <h1>{{ producto.nombre }}</h1>
-                <p>{{ producto.categoria }}</p>
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">{{ producto.nombre }}</h1>
+                <p class="fs-5 mb-4">{{ producto.categoria }}</p>
                 <div class="size-selector">
-                    <h6 class="mb-3">Talle</h6>
+                    <h6 class="mb-3 fs-5" style="margin-top: 2rem;">Talle</h6>
                     <div class="d-flex flex-wrap">
                         {% for talle in producto.talles %}
-                        <button class="size-btn {% if loop.first %}active{% endif %}" style="margin-right: 10px; padding: 5px 15px; border: 1px solid #ddd; background: {% if loop.first %}#333; color: white{% else %}white{% endif %};">{{ talle }}</button>
+                        <button class="size-btn" style="margin-right: 10px; padding: 5px 15px; border: 1px solid #ddd; background: white;">{{ talle }}</button>
                         {% endfor %}
                     </div>
                 </div>
-                <div class="product-description mt-3">
-                    <h6>Descripción</h6>
-                    {{ producto.descripcion | safe }}
-                    {% if producto.material %}
-                    <p>Material: {{ producto.material }}</p>
-                    {% endif %}
-                    {% if producto.cuidados %}
-                    <p>Cuidado: {{ producto.cuidados }}</p>
-                    {% endif %}
+                <div class="product-description" style="margin-top: 2rem;">
+                    <h6 class="mb-3 fs-5">Descripción</h6>
+                    <div class="fs-5" style="line-height: 1.8;">
+                        {{ producto.descripcion | safe }}
+                        {% if producto.material %}
+                        <p style="margin-top: 1.5rem;">Material: {{ producto.material }}</p>
+                        {% endif %}
+                        {% if producto.cuidados %}
+                        <p style="margin-top: 1.5rem;">Cuidado: {{ producto.cuidados }}</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
