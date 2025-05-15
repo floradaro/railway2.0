@@ -40,6 +40,10 @@ def get_db_connection():
 def home():
     return render_template('index.html')
 
+@app.route('/contact_form.html')
+def contact():
+    return render_template('contact_form.html')
+
 @app.route('/signup', methods=['GET'])
 def signup_page():
     email_prefill = request.args.get('email', '')
@@ -166,7 +170,7 @@ def login():
 
 @app.before_request
 def check_login():
-    public_routes = ['home', 'login', 'signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable']
+    public_routes = ['home', 'login','contact','signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable']
     
     if request.endpoint and request.endpoint not in public_routes and not session.get('logged_in'):
         return redirect(url_for('login'))
@@ -292,6 +296,8 @@ def delete_user(id):
 @app.route('/sizeTable')
 def sizeTable():
     return render_template('sizeTable.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))

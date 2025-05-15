@@ -68,58 +68,47 @@
 
     <main>
         <section class="container m-5 ">
-            <form id="signupForm">
+            <form id="contactForm">
                 <div class="col-9 col-md-6 col-lg-6 ">
-                    <h1 class="mb-2 text-dm-center">Crear cuenta</h1>
+                    <h1 class="mb-2 text-dm-center">Contáctanos</h1>
                     <h5 class="mb-4 mb-sm-3">
-                        Compra más rápido y llevá el control de tus pedidos, ¡en un solo lugar!
+                        ¿Tienes alguna duda o comentario? Completa el formulario y te responderemos a la
+                        brevedad.
                     </h5>
+
 
                     <div class="pb-3">
                         <h6>Nombre y Apellido</h6>
-                        <input type="text" class="form-control mb-2 input" id="fullname" name="fullname"
+                        <input type="text" class="form-control mb-2 input" id="fullname_form" name="fullname"
                             placeholder="Ej: Mariano Perez" required />
                     </div>
                     <div class="pb-3">
                         <h6>Email</h6>
-                        <input type="email" class="form-control mb-2 input" id="email" name="email" value="{{ email }}"
+                        <input type="email" class="form-control mb-2 input" id="email_form" name="email"
                             placeholder="nombre@ejemplo.com" required />
                     </div>
-                    <label for="password" class="form-label">CONTRASEÑA</label>
-                    <div class="mb-3">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control input mb-2" id="password" name="password"
-                                placeholder="Ej: tucontraseña" required>
-                            <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
-                                id="togglePassword">
-                                <i class="fa-solid fa-eye-slash"></i>
-                            </button>
-                        </div>
+                    <div class="pb-3">
+                        <h6>Teléfono (Opcional)</h6>
+                        <input type="tel" class="form-control mb-2 input" id="phone_form" name="phone"
+                            placeholder="+54 2612123456" />
                     </div>
-                    <label for="confirmPassword" class="form-label">CONFIRMAR CONTRASEÑA</label>
-                    <div class="mb-3">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control input mb-2" id="confirmPassword"
-                                name="confirmPassword" placeholder="Ej: tucontraseña" required>
-                            <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
-                                id="toggleConfirmPassword">
-                                <i class="fa-solid fa-eye-slash"></i>
-                            </button>
-                        </div>
+                    <div class="pb-3">
+                        <h6>Mensaje</h6>
+                        <textarea name="" id="message_form" class="input w-100" rows="5"></textarea>
                     </div>
+
 
                     <div id="signupMessage" class="alert d-none"></div>
 
                     <div class="d-grid gap-2 mt-4">
                         <button type="submit" class="btn button-submit d-flex justify-content-center">
-                            Crear Cuenta
+                            Enviar mensaje
                         </button>
                     </div>
                     <p class="mt-3 text-center">
-                        ¿Ya tienes una cuenta? <a href="./login"
-                            class="text-decoration-none register-link title3">Inicia
-                            sesión</a>
+                        Horario de atención: Lunes a Viernes de 9:00 a 18:00 hs.
                     </p>
+
                 </div>
             </form>
         </section>
@@ -186,7 +175,10 @@
         </div>
     </footer>
     <script src="../static/js/bootstrap.js"></script>
-    <script src="../static/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="../static/js/apiEmail.js"></script>
+
+
 </body>
 
 </html>
