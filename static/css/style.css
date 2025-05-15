@@ -43,6 +43,10 @@ body {
     padding: 0 !important;
 }
 
+.title4:hover {
+    text-decoration: underline !important;
+}
+
 .icon {
     color: var(--secondColor);
 }

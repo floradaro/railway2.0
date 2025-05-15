@@ -359,23 +359,24 @@ if (editPasswordBtn) {
     }
     
     // Funcionalidad para el botón de mostrar/ocultar contraseña
-    const togglePassword = document.getElementById('togglePassword');
-    if (togglePassword) {
-        togglePassword.addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.previousElementSibling;
             const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
+
+            if (input && input.type === 'password') {
+                input.type = 'text';
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
-            } else {
-                passwordInput.type = 'password';
+            } else if (input) {
+                input.type = 'password';
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
             }
         });
-    }
+    });
 });
 
     //Funcionalidad para botón de registrarse
