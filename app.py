@@ -58,8 +58,7 @@ def detalle_producto(producto_id):
     else:
         return "Producto no encontrado", 404
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 @app.route('/signup', methods=['GET'])
 def signup_page():
     email_prefill = request.args.get('email', '')
