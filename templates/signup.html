@@ -41,8 +41,15 @@
                         <div class="offcanvas-body">
                             <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
                             <a href="#" class="d-block mb-2 title2">→ Colección</a>
+                            <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
+                            {% if not session.get('logged_in') %}
                             <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
                             <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
+                            {% else %}
+                            <a href="./profile" class="d-block mb-2 title2">→ Perfil</a>
+                            <a href="./logout" class="d-block mb-2 title2">→ Cerrar Sesión</a>
+                            {% endif %}
+
                         </div>
                     </div>
 
