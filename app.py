@@ -58,8 +58,7 @@ def detalle_producto(producto_id):
     else:
         return "Producto no encontrado", 404
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 @app.route('/signup', methods=['GET'])
 def signup_page():
     email_prefill = request.args.get('email', '')
@@ -186,7 +185,7 @@ def login():
 
 @app.before_request
 def check_login():
-    public_routes = ['home', 'login','contact','signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable']
+    public_routes = ['home', 'login','contact','signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable', 'detail', 'base']
     
     if request.endpoint and request.endpoint not in public_routes and not session.get('logged_in'):
         return redirect(url_for('login'))

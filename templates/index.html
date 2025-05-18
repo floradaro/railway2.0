@@ -187,30 +187,33 @@
             </div>
 
         </section>
+        <!--
         <section class="border-bottom border-black borde1">
             <div class="d-flex align-items-center catalog-section mb-4">
                 <div class="catalog-image-small catalog-image catalog-image-left"></div>
 
-                <!-- Botón de Catálogo en el centro -->
+
                 <div class="catalog-button-container">
                     <a href="#catalog" class="catalog-button">VER CATÁLOGO</a>
                 </div>
 
-                <!-- Imagen derecha -->
+
                 <div class="catalog-image-large catalog-image catalog-image-right"></div>
             </div>
         </section>
+        -->
 
         <section class="border-bottom border-black borde1">
             <div class="product-grid">
-        {% for producto in productos %}
-        <div class="product-item">
-            <a href="{{ url_for('detalle_producto', producto_id=producto.id) }}">
-                <img src="{{ url_for('static', filename='assets/img/' ~ producto.imagen_principal) }}" alt="{{ producto.nombre }}">
-            </a>
-        </div>
-        {% endfor %}
-    </div>
+                {% for producto in productos %}
+                <div class="product-item">
+                    <a href="{{ url_for('detalle_producto', producto_id=producto.id) }}">
+                        <img src="{{ url_for('static', filename='assets/img/' ~ producto.imagen_principal) }}"
+                            alt="{{ producto.nombre }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </section>
 
         <section class="m-5">
@@ -298,9 +301,10 @@
     <script src="../static/js/script.js"></script>
 
     <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/2613444766" class="whatsapp-btn" target="_blank" aria-label="Chat en WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-  </a>
+    <a href="https://wa.me/2613444766" class="whatsapp-btn" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+            class="whatsapp-icon">
+    </a>
 </body>
 
 </html>
