@@ -185,7 +185,7 @@ def login():
 
 @app.before_request
 def check_login():
-    public_routes = ['home', 'login','contact','signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable', 'detail', 'base']
+    public_routes = ['home', 'login','contact','signup_page', 'create_user', 'reset', 'static', 'check_login_status', 'sizeTable', 'detalle_producto','static']
     
     if request.endpoint and request.endpoint not in public_routes and not session.get('logged_in'):
         return redirect(url_for('login'))
