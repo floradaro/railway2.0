@@ -278,19 +278,19 @@ body {
     text-decoration: none;
     z-index: 1000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .whatsapp-btn:hover {
+}
+
+.whatsapp-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Icono */
-  .whatsapp-icon {
+}
+
+/* Icono */
+.whatsapp-icon {
     width: 30px;
     height: 30px;
-  }
-  
+}
+
 
 .size-table-description {
     padding-left: 145px;
