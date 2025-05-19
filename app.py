@@ -1,42 +1,19 @@
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
-import os
 import mysql.connector
-from productos import obtener_producto_por_id
-from productos import productos
+from productos import obtener_producto_por_id, productos
+from config import Config
+import os
 
 
 app = Flask(__name__)
 
-app.secret_key = os.getenv('SECRET_KEY', 'clave-secreta-para-dev')
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = False 
-app.config['SESSION_COOKIE_HTTPONLY'] = True
-
-# Configuración para entorno local
-db_config_local = {
-    'user': 'root',
-    'password': '',  # Cambia por tu contraseña local
-    'host': 'localhost',
-    'database': 'galgos',  # Cambia por el nombre de tu base de datos local
-    'port': 3306  # Puerto predeterminado de MySQL
-}
-
-# Configuración de la base de datos railway
-#
-#db_config_production = {
-#   'user': 'root',
-#   'password': 'DVrbXVwFjFZiUJCcoGKgGTPdmOCbolnI',
-#    'host': 'junction.proxy.rlwy.net',
-#    'database': 'railway',
-#    'port':21588
-#}
-
-#mysql://root:DVrbXVwFjFZiUJCcoGKgGTPdmOCbolnI@junction.proxy.rlwy.net:21588/railway
-USE_LOCAL_DB= True
-db_config = db_config_local if USE_LOCAL_DB else db_config_production
+app.secret_key = Config.SECRET_KEY
+app.config['SESSION_COOKIE_SAMESITE'] = Config.SESSION_COOKIE_SAMESITE
+app.config['SESSION_COOKIE_SECURE'] = Config.SESSION_COOKIE_SECURE
+app.config['SESSION_COOKIE_HTTPONLY'] = Config.SESSION_COOKIE_HTTPONLY
 
 def get_db_connection():
-    conn = mysql.connector.connect(**db_config)
+    conn = mysql.connector.connect(**Config.DB_CONFIG)
     return conn
 
 @app.route('/')
