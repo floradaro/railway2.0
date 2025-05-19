@@ -43,6 +43,13 @@ body {
     padding: 0 !important;
 }
 
+.nav-color:active,
+.nav-color:focus {
+    color: var(--secondColor) !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
 .title4:hover {
     text-decoration: underline !important;
 }

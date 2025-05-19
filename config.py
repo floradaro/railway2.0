@@ -1,30 +1,28 @@
 import os
 
-# Configuracion desarrollo
+# Configuración desarrollo
 DB_CONFIG_LOCAL = {
-    'user': 'root',
-    'password': '',
-    'host': 'localhost',
-    'database': 'galgos',
-    'port': 3306
+    'user': os.getenv('DB_USER', 'root'),
+    'password': os.getenv('DB_PASSWORD', ''),
+    'host': os.getenv('DB_HOST', 'localhost'),
+    'database': os.getenv('DB_NAME', 'galgos'),
+    'port': int(os.getenv('DB_PORT', '3306'))  # Valor por defecto como string
 }
 
-# Configuracion Produccion
+# Configuración Producción
 DB_CONFIG_PRODUCTION = {
-    'user': 'root',
-    'password': 'DVrbXVwFjFZiUJCcoGKgGTPdmOCbolnI',
-    'host': 'junction.proxy.rlwy.net',
-    'database': 'railway',
-    'port': 21588
+    'user': os.getenv('PROD_DB_USER', 'root'),  # Añade valores por defecto
+    'password': os.getenv('PROD_DB_PASSWORD', ''),
+    'host': os.getenv('PROD_DB_HOST', 'localhost'),
+    'database': os.getenv('PROD_DB_NAME', 'railway'),
+    'port': int(os.getenv('PROD_DB_PORT', '21588'))  # Valor por defecto como string
 }
 
-# Variable de entorno
-USE_LOCAL_DB = True  # Cambia a False para producción
-
+# Variable de entorno (True=local, False=producción)
+USE_LOCAL_DB = os.getenv('USE_LOCAL_DB', 'True').lower() in ('true', '1', 't')
 
 DB_CONFIG = DB_CONFIG_LOCAL if USE_LOCAL_DB else DB_CONFIG_PRODUCTION
 
-# Configuraciones generales de Flask
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'clave-secreta-para-dev')
     SESSION_COOKIE_SAMESITE = 'Lax'

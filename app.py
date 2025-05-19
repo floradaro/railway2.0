@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
 import mysql.connector
 from productos import obtener_producto_por_id, productos
-from config import Config
+from config import Config, DB_CONFIG
 import os
 
 
@@ -13,7 +13,7 @@ app.config['SESSION_COOKIE_SECURE'] = Config.SESSION_COOKIE_SECURE
 app.config['SESSION_COOKIE_HTTPONLY'] = Config.SESSION_COOKIE_HTTPONLY
 
 def get_db_connection():
-    conn = mysql.connector.connect(**Config.DB_CONFIG)
+    conn = mysql.connector.connect(**DB_CONFIG)
     return conn
 
 @app.route('/')
