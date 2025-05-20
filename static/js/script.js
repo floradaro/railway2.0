@@ -301,23 +301,43 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ───── BOTÓN DE REDIRECCIÓN A REGISTRO ─────────
-    const registrarseBtn = document.getElementById('registrarseBtn');
-    if (registrarseBtn) {
-        registrarseBtn.addEventListener('click', () => {
-            const emailInput = document.getElementById('emailInput');
-            const mensajeError = document.getElementById('mensajeError');
-            const email = emailInput?.value.trim();
+// ───── BOTÓN DE REDIRECCIÓN A REGISTRO ─────────
+const registrarseBtn = document.getElementById('registrarseBtn');
+const emailInput = document.getElementById('emailInput');
+const mensajeError = document.getElementById('mensajeError');
+const mensajeUsuarioLogueado = document.getElementById('mensajeUsuarioLogueado');
 
-            if (!email) {
-                if (mensajeError) mensajeError.textContent = 'Por favor ingresá un correo válido.';
-                return;
+if (registrarseBtn) {
+    registrarseBtn.addEventListener('click', () => {
+        // Comprobamos si el usuario está logueado usando la variable global
+        // que definimos en el HTML
+        const isLoggedIn = window.isUserLoggedIn || false;
+
+        // Si el usuario está logueado, mostramos el mensaje temporal
+        if (isLoggedIn) {
+            if (mensajeUsuarioLogueado) {
+                mensajeUsuarioLogueado.style.display = 'block';
+                // Ocultar el mensaje después de 4 segundos
+                setTimeout(() => {
+                    mensajeUsuarioLogueado.style.display = 'none';
+                }, 4000);
             }
+            return;
+        }
 
-            if (mensajeError) mensajeError.textContent = '';
-            window.location.href = '/signup?email=' + encodeURIComponent(email);
-        });
-    }
+        // Si no está logueado, verificamos el email
+        const email = emailInput?.value.trim();
+
+        if (!email) {
+            if (mensajeError) mensajeError.textContent = 'Por favor ingresá un correo válido.';
+            return;
+        }
+
+        // Si todo está bien, redirigimos al registro con el email
+        if (mensajeError) mensajeError.textContent = '';
+        window.location.href = '/signup?email=' + encodeURIComponent(email);
+    });
+}
 
     // ───── INICIAR FUNCIONES GLOBALES ──────────────
     checkLoginStatus();

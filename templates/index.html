@@ -218,22 +218,28 @@
         </section>
 
         <section class="m-5">
-            <div class="align-items-center text-center">
-                <h1 class="mb-2">Recibí todas las ofertas</h1>
-                <h5 class="mb-4">
-                    ¿Quieres recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
-                    disfrutarlas!
-                </h5>
-                <div class="pb-3">
-                    <input type="email" id="emailInput" class="form-control input mb-2 mx-auto"
-                        style="max-width: 500px;" placeholder="nombre@ejemplo.com" required />
-                </div>
-                <div id="mensajeError" class="text-danger my-1" style="font-size: 0.9rem;"></div>
-                <button type="submit" id="registrarseBtn" class="btn button-submit">
-                    Registrarse
-                </button>
-            </div>
-        </section>
+    <div class="align-items-center text-center">
+        <h1 class="mb-2">Susbribite a nuestro newsletter</h1>
+        <h5 class="mb-4">
+            ¿Quieres recibir nuestras promociones? ¡Registrate ya mismo y comenzá a
+            disfrutarlas!
+        </h5>
+
+        <div class="pb-3">
+            <input type="email" id="emailInput" class="form-control input mb-2 mx-auto"
+                style="max-width: 500px;" placeholder="nombre@ejemplo.com" required />
+        </div>
+        <!-- Este div aparece temporalmente cuando un usuario logueado hace clic en el botón -->
+        <div id="mensajeUsuarioLogueado" class="alert alert-success py-3 mb-3 mx-auto w-50" style="display: none;">
+            <i class="fas fa-check-circle me-2 "></i>
+            Ya estás suscrito a nuestro newsletter con tu correo registrado.
+        </div>
+        <div id="mensajeError" class="text-danger my-1" style="font-size: 0.9rem;"></div>
+        <button type="submit" id="registrarseBtn" class="btn button-submit">
+            Registrarse
+        </button>
+    </div>
+</section>
     </main>
 
     <footer class="footer">
@@ -299,6 +305,10 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Esta variable será accesible desde cualquier script
+    window.isUserLoggedIn = {% if session.get('logged_in') %}true{% else %}false{% endif %};
+    </script>
     <script src="../static/js/bootstrap.js"></script>
     <script src="../static/js/script.js"></script>
 
