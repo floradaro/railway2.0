@@ -1,27 +1,30 @@
 import os
 
 # Configuración desarrollo
-DB_CONFIG_LOCAL = {
-    'user': os.getenv('DB_USER', 'root'),
-    'password': os.getenv('DB_PASSWORD', ''),
-    'host': os.getenv('DB_HOST', 'localhost'),
-    'database': os.getenv('DB_NAME', 'galgos'),
-    'port': int(os.getenv('DB_PORT', '3306'))  # Valor por defecto como string
-}
+#DB_CONFIG_LOCAL = {
+ #   'user': os.getenv('DB_USER', 'root'),
+  #  'password': os.getenv('DB_PASSWORD', ''),
+   # 'host': os.getenv('DB_HOST', 'localhost'),
+  #  'database': os.getenv('DB_NAME', 'galgos'),
+  #  'port': int(os.getenv('DB_PORT', '3306'))  # Valor por defecto como string
+#}
 
 # Configuración Producción
 DB_CONFIG_PRODUCTION = {
-    'user': os.getenv('PROD_DB_USER', 'root'),  # Añade valores por defecto
-    'password': os.getenv('PROD_DB_PASSWORD', ''),
-    'host': os.getenv('PROD_DB_HOST', 'localhost'),
-    'database': os.getenv('PROD_DB_NAME', 'railway'),
-    'port': int(os.getenv('PROD_DB_PORT', '21588'))  # Valor por defecto como string
+    'user': 'root',
+    'password': 'pCmWtaaQGqkIjHqmHVVUqVcfwsQIGvHt',
+    'host': 'gondola.proxy.rlwy.net',
+    'port': 15490,
+    'database': 'railway'
 }
 
-# Variable de entorno (True=local, False=producción)
-USE_LOCAL_DB = os.getenv('USE_LOCAL_DB', 'True').lower() in ('true', '1', 't')
+#mysql://root:pCmWtaaQGqkIjHqmHVVUqVcfwsQIGvHt@gondola.proxy.rlwy.net:15490/railway
 
-DB_CONFIG = DB_CONFIG_LOCAL if USE_LOCAL_DB else DB_CONFIG_PRODUCTION
+# Variable de entorno (True=local, False=producción)
+USE_LOCAL_DB = os.getenv('USE_LOCAL_DB', 'False').lower() in ('true', '1', 't')
+
+
+DB_CONFIG =  DB_CONFIG_PRODUCTION
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'clave-secreta-para-dev')
