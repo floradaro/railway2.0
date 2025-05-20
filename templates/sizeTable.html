@@ -17,18 +17,18 @@
 </head>
 
 <body>
-    <section>
-        <header class="my-4 border-bottom border-black borde">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <a href="/" class="nav-link nav-color">
-                                <h1 class="mb-4 title">GALGOS</h1>
-                            </a>
-                        </li>
-                    </ul>
+    <header class="mt-4 borde">
+        <div class="container">
+            <div class="d-flex justify-content-center d-flex flex-wrap">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="/" class="nav-link nav-color">
+                            <h1 class="mb-4 title">GALGOS</h1>
+                        </a>
+                    </li>
+                </ul>
 
+                <div class="d-flex flex-wrap align-items-center justify-content-center mb-4">
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
                             type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -41,8 +41,9 @@
                                 </button>
                             </div>
                             <div class="offcanvas-body">
-                                <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
-                                <a href="#" class="d-block mb-2 title2">→ Colección</a>
+                                <!--
+                                    <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
+                                    <a href="#" class="d-block mb-2 title2">→ Colección</a>-->
                                 <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
                                 {% if not session.get('logged_in') %}
                                 <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
@@ -73,11 +74,11 @@
                     </div>
                 </div>
             </div>
-        </header>
-    </section>
+        </div>
+    </header>
     <main>
-        <section class="border-bottom border-black borde1">
-            <div class="size-table-description">
+        <section class="border-bottom borde1 p-5">
+            <div class=" px-md-2 px-lg-4">
                 <h2>Talles de prendas unisex</h2>
                 <p>Las prendas unisex se han diseñado y etiquetado según los talles para hombre, pero están pensadas
                     para que las use cualquier persona, independientemente de su género. Si normalmente no usás talles
@@ -140,7 +141,7 @@
             </div>
 
             <!-- Imagen guía -->
-            <div style="flex: 0 0 300px;">
+            <div class="mx-auto" style="flex: 0 0 300px;">
                 <img src="../static/assets/img/guia_talles.png" alt="Guía de talles"
                     class="img-fluid rounded border border-dark">
             </div>

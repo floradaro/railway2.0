@@ -41,6 +41,8 @@ body {
 .nav-color {
     color: var(--secondColor);
     padding: 0 !important;
+    --bs-nav-link-color: #000;
+    --bs-nav-link-hover-color: #000;
 }
 
 .nav-color:active,
@@ -179,7 +181,7 @@ body {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     /* 4 columnas */
     gap: 20px;
     max-width: 1200px;
@@ -199,6 +201,18 @@ body {
 
 .product-item:hover img {
     transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .footer-color {
@@ -296,10 +310,4 @@ body {
 .whatsapp-icon {
     width: 30px;
     height: 30px;
-}
-
-
-.size-table-description {
-    padding-left: 145px;
-    padding-right: 115px;
 }

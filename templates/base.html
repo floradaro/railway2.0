@@ -17,18 +17,18 @@
 </head>
 
 <body>
-    <section>
-        <header class="my-4 border-bottom border-black borde">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <a href="/" class="nav-link nav-color">
-                                <h1 class="mb-4 title">GALGOS</h1>
-                            </a>
-                        </li>
-                    </ul>
+    <header class="mt-4 borde">
+        <div class="container">
+            <div class="d-flex justify-content-center d-flex flex-wrap">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="/" class="nav-link nav-color">
+                            <h1 class="mb-4 title">GALGOS</h1>
+                        </a>
+                    </li>
+                </ul>
 
+                <div class="d-flex flex-wrap align-items-center justify-content-center mb-4">
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
                             type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -41,15 +41,16 @@
                                 </button>
                             </div>
                             <div class="offcanvas-body">
-                                <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
-                                <a href="#" class="d-block mb-2 title2">→ Colección</a>
-                                <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
+                                <!--
+                                    <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
+                                    <a href="#" class="d-block mb-2 title2">→ Colección</a>-->
+                                <a href="../sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
                                 {% if not session.get('logged_in') %}
-                                <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
-                                <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
+                                <a href="../login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
+                                <a href="../signup" class="d-block mb-2 title2">→ Registrarse</a>
                                 {% else %}
-                                <a href="./profile" class="d-block mb-2 title2">→ Perfil</a>
-                                <a href="./logout" class="d-block mb-2 title2">→ Cerrar Sesión</a>
+                                <a href="../profile" class="d-block mb-2 title2">→ Perfil</a>
+                                <a href="../logout" class="d-block mb-2 title2">→ Cerrar Sesión</a>
                                 {% endif %}
 
                             </div>
@@ -73,8 +74,9 @@
                     </div>
                 </div>
             </div>
-        </header>
-    </section>
+        </div>
+    </header>
+
     <!-- Bloque de contenido personalizado -->
     {% block content %}{% endblock %}
     <footer class="footer">
@@ -97,7 +99,7 @@
                     <p>
                         Lunes a Viernes: 10 - 19 Hs<br />Sábados: 10 a 14 Hs - 16 a 19 Hs
                     </p>
-                    <a href="./contact_form.html" class="nav-color text-decoration-none title4">
+                    <a href="../contact_form.html" class="nav-color text-decoration-none title4">
                         <h5>Dudas Frecuentes</h5>
                     </a>
                     <h5 class="">Contacto</h5>

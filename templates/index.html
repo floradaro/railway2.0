@@ -17,18 +17,18 @@
 </head>
 
 <body>
-    <section>
-        <header class="my-4 border-bottom border-black borde">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <a href="#" class="nav-link nav-color">
-                                <h1 class="mb-4 title">GALGOS</h1>
-                            </a>
-                        </li>
-                    </ul>
+    <header class="mt-4 borde">
+        <div class="container">
+            <div class="d-flex justify-content-center d-flex flex-wrap">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="#" class="nav-link nav-color">
+                            <h1 class="mb-4 title">GALGOS</h1>
+                        </a>
+                    </li>
+                </ul>
 
+                <div class="d-flex flex-wrap align-items-center justify-content-center mb-4">
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
                             type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -41,8 +41,9 @@
                                 </button>
                             </div>
                             <div class="offcanvas-body">
-                                <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
-                                <a href="#" class="d-block mb-2 title2">→ Colección</a>
+                                <!--
+                                    <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
+                                    <a href="#" class="d-block mb-2 title2">→ Colección</a>-->
                                 <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
                                 {% if not session.get('logged_in') %}
                                 <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
@@ -73,11 +74,10 @@
                     </div>
                 </div>
             </div>
-        </header>
-    </section>
+        </div>
+    </header>
     <main>
-
-        <section class="border-bottom border-black borde1 py-4" style="background-color: #c5ab91;">
+        <section class="border-bottom borde1 py-4" style="background-color: #c5ab91;">
             <h2 class="text-center mb-4 title">NEW ARRIVALS</h2>
 
             <!-- Carrusel con Bootstrap que muestra 3 imágenes por slide -->
@@ -203,7 +203,7 @@
         </section>
         -->
 
-        <section class="border-bottom border-black borde1">
+        <section class="border-bottom borde1">
             <div class="product-grid">
                 {% for producto in productos %}
                 <div class="product-item">
@@ -223,10 +223,9 @@
                     ¿Quieres recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
                     disfrutarlas!
                 </h5>
-
-                <div class="d-flex justify-content-center m-4">
-                    <input type="email" id="emailInput" class="form-control w-50 mb-2 input"
-                        placeholder="nombre@ejemplo.com" required />
+                <div class="pb-3">
+                    <input type="email" id="emailInput" class="form-control input mb-2 mx-auto"
+                        style="max-width: 500px;" placeholder="nombre@ejemplo.com" required />
                 </div>
                 <div id="mensajeError" class="text-danger my-1" style="font-size: 0.9rem;"></div>
                 <button type="submit" id="registrarseBtn" class="btn button-submit">

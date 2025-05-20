@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <header class="my-4 border-bottom border-black borde">
+    <header class="mt-4 borde">
         <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div class="d-flex justify-content-center d-flex flex-wrap">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li>
                         <a href="/" class="nav-link nav-color">
@@ -28,38 +28,49 @@
                     </li>
                 </ul>
 
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
-                        type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                        aria-controls="sidebar">Más</a>
+                <div class="d-flex flex-wrap align-items-center justify-content-center mb-4">
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle me-4"
+                            type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                            aria-controls="sidebar">Más</a>
 
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
-                        <div class="offcanvas-header">
-                            <button type="btn-close" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                            </button>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+                            <div class="offcanvas-header">
+                                <button type="btn-close" class="btn-close" data-bs-dismiss="offcanvas"
+                                    aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <!--
+                                    <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
+                                    <a href="#" class="d-block mb-2 title2">→ Colección</a>-->
+                                <a href="./sizeTable" class="d-block mb-2 title2">→ Guía de talles</a>
+                                {% if not session.get('logged_in') %}
+                                <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
+                                <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
+                                {% else %}
+                                <a href="./profile" class="d-block mb-2 title2">→ Perfil</a>
+                                <a href="./logout" class="d-block mb-2 title2">→ Cerrar Sesión</a>
+                                {% endif %}
+
+                            </div>
                         </div>
-                        <div class="offcanvas-body">
-                            <a href="#" class="d-block mb-2 title2">→ Ver Todo</a>
-                            <a href="#" class="d-block mb-2 title2">→ Colección</a>
-                            <a href="./login" class="d-block mb-2 title2">→ Iniciar Sesión</a>
-                            <a href="./signup" class="d-block mb-2 title2">→ Registrarse</a>
-                        </div>
+
                     </div>
+                    <div class="ms-4">
+                        <i class="bi bi-search icon"></i>
 
-                </div>
-                <div class="ms-4">
-                    <i class="bi bi-search icon"></i>
-
-                    <button class="btn button-white" id="searchBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-search icon " viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0">
-                            </path>
-                        </svg>
-                        Buscar</button>
-                    <div id="searchInput" class="" style="display: none">
-                        <input type="text" class="form-control" placeholder="Buscar..." id="searchField" />
+                        <button class="btn button-white" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search icon " viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0">
+                                </path>
+                            </svg>
+                            Buscar</button>
+                        <div id="searchInput" class="" style="display: none">
+                            <input type="text" class="form-control" placeholder="Buscar..." id="searchField" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,7 +78,7 @@
     </header>
 
     <main>
-        <section class="container m-5 ">
+        <section class="container ">
             <form id="contactForm">
                 <div class="col-9 col-md-6 col-lg-6 ">
                     <h1 class="mb-2 text-dm-center">Contáctanos</h1>
