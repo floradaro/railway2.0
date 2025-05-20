@@ -26,10 +26,10 @@
           
           
           const templateParams = {
-            from_name: document.getElementById('fullname_form').value,
-            reply_to: document.getElementById('email_form').value,
-            phone: document.getElementById('phone_form').value || 'No proporcionado',
-            message: document.getElementById('message_form').value
+            fullname_form: document.getElementById('fullname_form').value,
+            email_form: document.getElementById('email_form').value,
+            phone_form: document.getElementById('phone_form').value || 'No proporcionado',
+            message_form: document.getElementById('message_form').value
           };
           
           // Enviar el email 
