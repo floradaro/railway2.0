@@ -124,12 +124,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ───── EDITAR PERFIL ───────────────────────────
     const editProfileBtn = document.getElementById('editProfileBtn');
+    const messageProfile = document.getElementById('profileMessage');
     if (editProfileBtn) {
         editProfileBtn.addEventListener('click', function () {
             if (!currentUserId) return alert('No se pudo identificar el usuario actual');
+            
             const fullname = document.getElementById('fullname').value;
             const email = document.getElementById('email').value;
-            if (!fullname || !email) return alert('Por favor, complete todos los campos');
+            if (!fullname || !email) {
+                messageProfile.classList.remove('d-none', 'alert-success');
+                messageProfile.classList.add('alert-danger');
+                messageProfile.textContent = 'Las contraseñas no coinciden';
+                return;
+            }
 
             fetch(`/update_profile/${currentUserId}`, {
                 method: 'POST',
@@ -140,21 +147,67 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (!res.ok) throw new Error('Error al actualizar el perfil');
                     return res.json();
                 })
-                .then(() => alert('Perfil actualizado exitosamente'))
-                .catch(err => alert('Error al actualizar el perfil: ' + err.message));
+                .then(() => {
+                    messageProfile.classList.remove('d-none', 'alert-danger');
+                    messageProfile.classList.add('alert-success');
+                    messageProfile.textContent = 'Perfil actualizado correctamente';
+                })
+                .catch(err => {
+                    messageProfile.classList.remove('d-none', 'alert-success');
+                    messageProfile.classList.add('alert-danger');
+                    messageProfile.textContent = err.message;
+                });
         });
     }
 
+    
     // ───── CAMBIO DE CONTRASEÑA ────────────────────
     const editPasswordBtn = document.getElementById('editPasswordBtn');
+    // Verificamos si existe el elemento para mostrar mensajes
+    // Si no existe, lo creamos justo después del botón
+    let messagePassword = document.getElementById('passwordMessage');
+    if (!messagePassword && editPasswordBtn) {
+        messagePassword = document.createElement('div');
+        messagePassword.id = 'passwordMessage';
+        messagePassword.className = 'alert mt-3 d-none';
+        editPasswordBtn.parentNode.insertBefore(messagePassword, editPasswordBtn.nextSibling);
+    }
+    
     if (editPasswordBtn) {
         editPasswordBtn.addEventListener('click', function () {
             if (!currentUserId) return alert('No se pudo identificar el usuario actual');
-            const current = document.getElementById('password').value;
-            const nueva = document.getElementById('newPassword').value;
-            const confirmar = document.getElementById('confirmNewPassword').value;
-            if (!current || !nueva || !confirmar) return alert('Por favor, complete todos los campos');
-            if (nueva !== confirmar) return alert('Las contraseñas nuevas no coinciden');
+            
+            // Seleccionar correctamente los campos de contraseña por su nombre
+            const passwordInputs = document.querySelectorAll('input[name="password"]');
+            const current = passwordInputs.length > 0 ? passwordInputs[0].value : '';
+            
+            const newPasswordInput = document.querySelector('input[name="newPassword"]');
+            const confirmNewPasswordInput = document.querySelector('input[name="confirmNewPassword"]');
+            
+            const nueva = newPasswordInput ? newPasswordInput.value : '';
+            const confirmar = confirmNewPasswordInput ? confirmNewPasswordInput.value : '';
+            
+            if (!current || !nueva || !confirmar) {
+                if (messagePassword) {
+                    messagePassword.classList.remove('d-none', 'alert-success');
+                    messagePassword.classList.add('alert-danger');
+                    messagePassword.textContent = 'Por favor, complete todos los campos';
+                } else {
+                    alert('Por favor, complete todos los campos');
+                }
+                return;
+            }
+            
+            if (nueva !== confirmar) {
+                if (messagePassword) {
+                    messagePassword.classList.remove('d-none', 'alert-success');
+                    messagePassword.classList.add('alert-danger');
+                    messagePassword.textContent = 'Las contraseñas nuevas no coinciden';
+                } else {
+                    alert('Las contraseñas nuevas no coinciden');
+                }
+                return;
+            }
 
             fetch(`/update_password/${currentUserId}`, {
                 method: 'POST',
@@ -162,38 +215,54 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify({ current_password: current, new_password: nueva })
             })
                 .then(res => {
-                    if (!res.ok) return res.json().then(data => { throw new Error(data.message); });
+                    if (!res.ok) return res.json().then(data => { throw new Error(data.message || 'Error al actualizar la contraseña'); });
                     return res.json();
                 })
                 .then(() => {
-                    alert('Contraseña actualizada exitosamente');
-                    document.getElementById('password').value = '';
-                    document.getElementById('newPassword').value = '';
-                    document.getElementById('confirmNewPassword').value = '';
+                    if (messagePassword) {
+                        messagePassword.classList.remove('d-none', 'alert-danger');
+                        messagePassword.classList.add('alert-success');
+                        messagePassword.textContent = 'Contraseña actualizada correctamente';
+                    } else {
+                        alert('Contraseña actualizada exitosamente');
+                    }
+                    
+                    // Limpiar los campos después de actualizar
+                    if (passwordInputs.length > 0) passwordInputs[0].value = '';
+                    if (newPasswordInput) newPasswordInput.value = '';
+                    if (confirmNewPasswordInput) confirmNewPasswordInput.value = '';
                 })
-                .catch(error => alert(error.message));
+                .catch(err => {
+                    if (messagePassword) {
+                        messagePassword.classList.remove('d-none', 'alert-success');
+                        messagePassword.classList.add('alert-danger');
+                        messagePassword.textContent = err.message;
+                    } else {
+                        alert(err.message);
+                    }
+                });
         });
     }
 
     // ───── ELIMINAR PERFIL ─────────────────────────
-    const deleteBtn = document.querySelector('.btn-danger');
-    const confirmBtn = document.getElementById('confirmDeleteBtn');
-    const passwordInput = document.getElementById('deletePassword');
+    const deleteProfileBtn = document.getElementById('deleteProfileBtn'); // Corrección: usar el ID correcto
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    const deletePassword = document.getElementById('deletePassword');
     const modalElement = document.getElementById('deleteModal');
-    if (deleteBtn && confirmBtn && passwordInput && modalElement) {
+    
+    if (deleteProfileBtn && confirmDeleteBtn && deletePassword && modalElement) {
         const deleteModal = new bootstrap.Modal(modalElement);
 
-        deleteBtn.addEventListener('click', () => {
+        deleteProfileBtn.addEventListener('click', () => {
             if (!currentUserId) return alert('No se pudo identificar el usuario actual');
-            passwordInput.value = '';
+            deletePassword.value = '';
             deleteModal.show();
         });
 
-        confirmBtn.addEventListener('click', () => {
-            const password = passwordInput.value.trim();
+        confirmDeleteBtn.addEventListener('click', () => {
+            const password = deletePassword.value.trim();
             if (!password) return alert('Debe ingresar su contraseña');
-            deleteModal.hide();
-
+            
             fetch(`/users/${currentUserId}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
@@ -205,10 +274,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(() => {
                     alert('Perfil eliminado exitosamente');
+                    deleteModal.hide(); // Ocultar el modal después de eliminar
                     window.location.href = '/logout';
                 })
-                .catch(err => alert('Error al eliminar el perfil: ' + err.message));
+                .catch(err => {
+                    alert('Error al eliminar el perfil: ' + err.message);
+                    deleteModal.hide(); // Ocultar el modal si hay error
+                });
         });
+        
+        // Agregar este evento para el botón de cancelar
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        if (cancelDeleteBtn) {
+            cancelDeleteBtn.addEventListener('click', () => {
+                deleteModal.hide();
+            });
+        }
     }
 
     // ───── BÚSQUEDA ────────────────────────────────
