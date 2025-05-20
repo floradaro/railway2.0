@@ -79,61 +79,70 @@
     </header>
 
     <main>
-        <section class="container m-5 ">
-            <form id="signupForm">
-                <div class="col-9 col-md-6 col-lg-6 ">
-                    <h1 class="mb-2 text-dm-center">Crear cuenta</h1>
-                    <h5 class="mb-4 mb-sm-3">
-                        Compra más rápido y llevá el control de tus pedidos, ¡en un solo lugar!
-                    </h5>
+        <section class="container m-5">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <form id="signupForm">
+                        <h1 class="mb-2 text-dm-center">Crear cuenta</h1>
+                        <h5 class="mb-4 mb-sm-3">
+                            Compra más rápido y llevá el control de tus pedidos, ¡en un solo lugar!
+                        </h5>
 
-                    <div class="pb-3">
-                        <h6>Nombre y Apellido</h6>
-                        <input type="text" class="form-control mb-2 input" id="fullname" name="fullname"
-                            placeholder="Ej: Mariano Perez" required />
-                    </div>
-                    <div class="pb-3">
-                        <h6>Email</h6>
-                        <input type="email" class="form-control mb-2 input" id="email" name="email" value="{{ email }}"
-                            placeholder="nombre@ejemplo.com" required />
-                    </div>
-                    <label for="password" class="form-label">CONTRASEÑA</label>
-                    <div class="mb-3">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control input mb-2" id="password" name="password"
-                                placeholder="Ej: tucontraseña" required>
-                            <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
-                                id="togglePassword">
-                                <i class="fa-solid fa-eye-slash"></i>
+                        <div class="pb-3">
+                            <h6>Nombre y Apellido</h6>
+                            <input type="text" class="form-control mb-2 input" id="fullname" name="fullname"
+                                placeholder="Ej: Mariano Perez" required />
+                        </div>
+                        <div class="pb-3">
+                            <h6>Email</h6>
+                            <input type="email" class="form-control mb-2 input" id="email" name="email"
+                                value="{{ email }}" placeholder="nombre@ejemplo.com" required />
+                        </div>
+                        <label for="password" class="form-label">CONTRASEÑA</label>
+                        <div class="mb-3">
+                            <div class="input-group mb-2">
+                                <input type="password" class="form-control input mb-2" id="password" name="password"
+                                    placeholder="Ej: tucontraseña" required>
+                                <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
+                                    id="togglePassword">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label for="confirmPassword" class="form-label">CONFIRMAR CONTRASEÑA</label>
+                        <div class="mb-3">
+                            <div class="input-group mb-2">
+                                <input type="password" class="form-control input mb-2" id="confirmPassword"
+                                    name="confirmPassword" placeholder="Ej: tucontraseña" required>
+                                <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
+                                    id="toggleConfirmPassword">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="signupMessage" class="alert d-none"></div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn button-submit d-flex justify-content-center">
+                                Crear Cuenta
                             </button>
                         </div>
-                    </div>
-                    <label for="confirmPassword" class="form-label">CONFIRMAR CONTRASEÑA</label>
-                    <div class="mb-3">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control input mb-2" id="confirmPassword"
-                                name="confirmPassword" placeholder="Ej: tucontraseña" required>
-                            <button class="btn btn-outline-secondary h-25 input toggle-password" type="button"
-                                id="toggleConfirmPassword">
-                                <i class="fa-solid fa-eye-slash"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="signupMessage" class="alert d-none"></div>
-
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn button-submit d-flex justify-content-center">
-                            Crear Cuenta
-                        </button>
-                    </div>
-                    <p class="mt-3 text-center">
-                        ¿Ya tienes una cuenta? <a href="./login"
-                            class="text-decoration-none register-link title3">Inicia
-                            sesión</a>
-                    </p>
+                        <p class="mt-3 text-center">
+                            ¿Ya tienes una cuenta? <a href="./login"
+                                class="text-decoration-none register-link title3">Inicia
+                                sesión</a>
+                        </p>
+                    </form>
                 </div>
-            </form>
+                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="p-3">
+                        <!-- Aquí va tu imagen -->
+                        <img src="../static/assets/img/10.jpg" alt="Imagen de contacto"
+                            class="w-75 ms-5 img-fluid rounded">
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">

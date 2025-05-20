@@ -79,43 +79,53 @@
     </header>
 
     <main>
-        <section class="container m-5 ">
-            <form id="loginForm" method="POST" action="/login">
-                <div class="col-9 col-md-6 col-lg-6">
-                    <h1 class="mb-2">Iniciar Sesión</h1>
-                    <div class="pb-4">
-                        <h6>Email</h6>
-                        <input type="email" class="form-control mb-2 input" id="email" name="email"
-                            placeholder="nombre@ejemplo.com" required />
-                    </div>
-                    <label for="password" class="form-label">CONTRASEÑA</label>
-                    <div class="mb-4">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control input mb-2" id="password" name="password"
-                                placeholder="Ej: tu contraseña" required>
-                            <button class="btn btn-outline-secondary h-25 input toggle-password" type="button">
-                                <i class="fa-solid fa-eye-slash"></i>
+        <section class="container m-5">
+            <div class="row"> <!-- Añadido el div row para contener las columnas -->
+                <div class="col-12 col-md-6">
+                    <form id="loginForm" method="POST" action="/login">
+                        <h1 class="mb-2 mt-5">Iniciar Sesión</h1>
+                        <div class="pb-4">
+                            <h6>Email</h6>
+                            <input type="email" class="form-control mb-2 input" id="email" name="email"
+                                placeholder="nombre@ejemplo.com" required />
+                        </div>
+                        <label for="password" class="form-label">CONTRASEÑA</label>
+                        <div class="mb-5">
+                            <div class="input-group mb-2">
+                                <input type="password" class="form-control input mb-2" id="password" name="password"
+                                    placeholder="Ej: tu contraseña" required>
+                                <button class="btn btn-outline-secondary h-25 input toggle-password" type="button">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                            </div>
+                            <div class="mt-1 text-end title3 d-block">
+                                <a href="./password_reset" class="text-muted forgot-password title3">¿Olvidaste tu
+                                    contraseña?</a>
+                            </div>
+                        </div>
+
+                        <div id="loginMessage" class="alert d-none"></div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn button-submit d-flex justify-content-center">
+                                Iniciar sesión
                             </button>
                         </div>
-                        <div class="mt-1 text-end title3 d-block">
-                            <a href="./password_reset" class="text-muted forgot-password title3">¿Olvidaste tu
-                                contraseña?</a>
-                        </div>
-                    </div>
-
-                    <div id="loginMessage" class="alert d-none"></div>
-
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn button-submit d-flex justify-content-center">
-                            Iniciar sesión
-                        </button>
-                    </div>
-                    <p class="mt-3 text-center">
-                        ¿No tenés cuenta aún? <a href="./signup" class="text-decoration-none register-link title3">Crear
-                            Cuenta</a>
-                    </p>
+                        <p class="mt-3 text-center">
+                            ¿No tenés cuenta aún? <a href="./signup"
+                                class="text-decoration-none register-link title3">Crear
+                                Cuenta</a>
+                        </p>
+                    </form>
                 </div>
-            </form>
+                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="p-3">
+                        <!-- Aquí va tu imagen -->
+                        <img src="../static/assets/img/5.jpg" alt="Imagen de contacto"
+                            class="w-75 ms-5 img-fluid rounded">
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">
